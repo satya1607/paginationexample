@@ -1,66 +1,82 @@
 <html>
 <head>
     <title>Pagination Example</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    />
+     <style>
+   .pagination{
+    justify-content: center;
+     }
+  </style>
 </head>
 <body>
-<div class="flex justify-center mt-8">
-    <nav class="flex flex-wrap border-2 border-blue-500 rounded-xl shadow-sm overflow-hidden" aria-label="Pagination">
-        <a href="#" class="px-3 py-2 text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700 transition" aria-label="Previous">
-            &laquo;
-        </a>
-        <a href="#" class="px-3 py-2 text-white bg-blue-500 font-bold transition">1</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">2</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">3</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">4</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">5</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">6</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">7</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">8</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">9</a>
-        <a href="#" class="px-3 py-2 text-blue-500 bg-white hover:bg-blue-50 hover:text-blue-700 transition">10</a>
-        <a href="#" class="px-3 py-2 text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700 transition" aria-label="Next">
-            &raquo;
-        </a>
-    </nav>
-</div>
- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const nav = document.querySelector('nav[aria-label="Pagination"]');
-            nav.addEventListener('click', function (e) {
-                if (e.target.tagName === 'A' && !e.target.hasAttribute('aria-label')) {
-                    e.preventDefault();
-                    // Remove active class from all page links
-                    nav.querySelectorAll('a').forEach(a => {
-                        a.classList.remove('text-white', 'bg-blue-500', 'font-bold');
-                        a.classList.remove('text-blue-500', 'bg-white');
-                        if (!a.hasAttribute('aria-label')) {
-                            a.classList.add('text-blue-500', 'bg-white');
-                        }
-                    });
-                    // Handle Previous and Next buttons
-                    const pageLinks = Array.from(nav.querySelectorAll('a')).filter(a => !a.hasAttribute('aria-label'));
-                    const prevBtn = nav.querySelector('a[aria-label="Previous"]');
-                    const nextBtn = nav.querySelector('a[aria-label="Next"]');
-                    const activeIndex = pageLinks.findIndex(a => a.classList.contains('bg-blue-500'));
-                    // Enable/disable Previous button
-                    if (activeIndex === 0) {
-                        prevBtn.classList.add('pointer-events-none', 'opacity-50');
-                    } else {
-                        prevBtn.classList.remove('pointer-events-none', 'opacity-50');
-                    }
-                    // Enable/disable Next button
-                    if (activeIndex === pageLinks.length - 1) {
-                        nextBtn.classList.add('pointer-events-none', 'opacity-50');
-                    } else {
-                        nextBtn.classList.remove('pointer-events-none', 'opacity-50');
-                    }
-                    // Add active class to clicked page
-                    e.target.classList.remove('text-blue-500', 'bg-white');
-                    e.target.classList.add('text-white', 'bg-blue-500', 'font-bold');
-                }
-            });
-        });
-    </script>
+<div class="container">
+     <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1>Pagination</h1>
+      </div>
+      <div class="col-12 text-left" id="displaypageno">
+        <h5>PageNo: Nil</h5>
+      </div>
+    </div>
+    <div id="displaytable">
+    </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination flex-wrap">
+              <li class="page-item">
+                <a class="page-link" onclick="first()" href="#">First</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="prev()" href="#">Previous</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(1)" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(2)" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(3)" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(4)" href="#">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(5)" href="#">5</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(6)" href="#">6</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(7)" href="#">7</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(8)" href="#">8</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(9)" href="#">9</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="page(10)" href="#">10</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="next()" href="#">Next</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" onclick="last()" href="#">Last</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="pagination.js"></script>
+               
 </body>
 </html>
